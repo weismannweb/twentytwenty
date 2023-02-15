@@ -9,9 +9,9 @@
       no_overlay: false,
       move_slider_on_hover: false,
       move_with_handle_only: true,
-      type: 'img',
+      thetype: 'img',
       click_to_move: false
-    }, options);
+    }, options);videovideovideovideo
 
     return this.each(function() {
 
@@ -31,21 +31,9 @@
       }
 
 
-var theType = function(options.type) {
-        if (options.type === 'div') {
-          var beforeEle = container.find("div:first");
-        var afterEle = container.find("div:last");
-        }
-        elseif( options.type  === 'video') {
-          var beforeEle = container.find("video:first");
-        var afterEle = container.find("video:last");
-      }
-      else{
-        var beforeEle = container.find("img:first");
-        var afterEle = container.find("img:last");
-          }
-          return theType;
-      };
+
+   
+
 
 
       container.append("<div class='twentytwenty-handle'></div>");
@@ -68,14 +56,14 @@ var theType = function(options.type) {
       };
 
       var adjustContainer = function(offset) {
-      	if (sliderOrientation === 'vertical') {
+        if (sliderOrientation === 'vertical') {
           beforeEle.css("clip", "rect(0,"+offset.w+","+offset.ch+",0)");
           afterEle.css("clip", "rect("+offset.ch+","+offset.w+","+offset.h+",0)");
-      	}
-      	else {
+        }
+        else {
           beforeEle.css("clip", "rect(0,"+offset.cw+","+offset.h+",0)");
           afterEle.css("clip", "rect(0,"+offset.w+","+offset.h+","+offset.cw+")");
-    	}
+      }
         container.css("height", offset.h);
       };
 
@@ -93,8 +81,8 @@ var theType = function(options.type) {
       // Calculate the slider percentage based on the position.
       var getSliderPercentage = function(positionX, positionY) {
         var sliderPercentage = (sliderOrientation === 'vertical') ?
-          (positionY-offsetY)/imgHeight :
-          (positionX-offsetX)/imgWidth;
+          (positionY-offsetY)/eleHeight :
+          (positionX-offsetX)/eleWidth;
 
         return minMaxNumber(sliderPercentage, 0, 1);
       };
@@ -106,8 +94,8 @@ var theType = function(options.type) {
 
       var offsetX = 0;
       var offsetY = 0;
-      var imgWidth = 0;
-      var imgHeight = 0;
+      var eleWidth = 0;
+      var eleHeight = 0;
       var onMoveStart = function(e) {
         if (((e.distX > e.distY && e.distX < -e.distY) || (e.distX < e.distY && e.distX > -e.distY)) && sliderOrientation !== 'vertical') {
           e.preventDefault();
@@ -118,8 +106,8 @@ var theType = function(options.type) {
         container.addClass("active");
         offsetX = container.offset().left;
         offsetY = container.offset().top;
-        imgWidth = beforeEle.width(); 
-        imgHeight = beforeEle.height();          
+        eleWidth = beforeEle.width(); 
+        eleHeight = beforeEle.height();          
       };
       var onMove = function(e) {
         if (container.hasClass("active")) {
@@ -146,7 +134,7 @@ var theType = function(options.type) {
         e.preventDefault();
       });
 
-      container.find("theType").on("mousedown", function(event) {
+      container.find(options.thetype).on("mousedown", function(event) {
         event.preventDefault();
       });
 
@@ -154,8 +142,8 @@ var theType = function(options.type) {
         container.on('click', function(e) {
           offsetX = container.offset().left;
           offsetY = container.offset().top;
-          imgWidth = beforeEle.width();
-          imgHeight = beforeEle.height();
+          eleWidth = beforeEle.width();
+          eleHeight = beforeEle.height();
 
           sliderPct = getSliderPercentage(e.pageX, e.pageY);
           adjustSlider(sliderPct);
