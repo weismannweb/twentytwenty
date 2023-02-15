@@ -31,17 +31,19 @@
       }
 
 
-var beforeEle = container.find("img:first");
-var afterEle = container.find("img:last");
 
    if (options.thetype === 'div') {
-        beforeEle = container.find("div:first");
-        afterEle = container.find("div:last");
+        var beforeEle = container.find("div:first");
+        var afterEle = container.find("div:last");
    }
    else if (options.thetype === 'video') {
-        beforeEle = container.find("video:first");
-        afterEle = container.find("video:last");
+        var beforeEle = container.find("video:first");
+        var afterEle = container.find("video:last");
   }
+      else{
+        var beforeEle = container.find("img:first");
+        var afterEle = container.find("img:last");
+      }
   
 
 
