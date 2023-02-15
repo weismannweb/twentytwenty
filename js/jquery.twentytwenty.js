@@ -35,15 +35,14 @@ var beforeEle = container.find("img:first");
 var afterEle = container.find("img:last");
 
         if (options.thetype === 'div') {
-          var beforeEle = container.find("div:first");
-        var afterEle = container.find("div:last");
+        beforeEle = container.find("div:first");
+        afterEle = container.find("div:last");
         }
         else if (options.thetype === 'video') {
-        var beforeEle = container.find("video:first");
-        var afterEle = container.find("video:last");
+        beforeEle = container.find("video:first");
+        afterEle = container.find("video:last");
       }
   
-
 
 
       container.append("<div class='twentytwenty-handle'></div>");
