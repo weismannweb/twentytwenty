@@ -32,7 +32,19 @@
 
 
 
-   
+        if (options.thetype === 'div') {
+          var beforeEle = container.find("div:first");
+        var afterEle = container.find("div:last");
+        }
+        else if( options.thetype  === 'video') {
+          var beforeEle = container.find("video:first");
+        var afterEle = container.find("video:last");
+      }
+      else{
+        var beforeEle = container.find("img:first");
+        var afterEle = container.find("img:last");
+      }
+
 
 
 
