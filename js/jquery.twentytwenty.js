@@ -34,14 +34,14 @@
 var beforeEle = container.find("img:first");
 var afterEle = container.find("img:last");
 
-        if (options.thetype === 'div') {
-        beforeEle = container.find("div:first");
-        afterEle = container.find("div:last");
-        }
-        else if (options.thetype === 'video') {
-        beforeEle = container.find("video:first");
-        afterEle = container.find("video:last");
-      }
+   if (options.thetype === 'div') {
+        beforeEle = container.find("div")[0];
+        afterEle = #container.find("div")[1];
+   }
+   else if (options.thetype === 'video') {
+        beforeEle = container.find("video")[0];
+        afterEle = #container.find("video")[1];
+  }
   
 
 
