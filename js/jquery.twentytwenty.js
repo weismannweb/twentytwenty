@@ -11,7 +11,7 @@
       move_with_handle_only: true,
       thetype: 'img',
       click_to_move: false
-    }, options);videovideovideovideo
+    }, options);
 
     return this.each(function() {
 
