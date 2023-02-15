@@ -9,6 +9,7 @@
       no_overlay: false,
       move_slider_on_hover: false,
       move_with_handle_only: true,
+      type: 'img',
       click_to_move: false
     }, options);
 
@@ -28,19 +29,36 @@
         overlay.append("<div class='twentytwenty-before-label' data-content='"+options.before_label+"'></div>");
         overlay.append("<div class='twentytwenty-after-label' data-content='"+options.after_label+"'></div>");
       }
-      var beforeImg = container.find("img:first");
-      var afterImg = container.find("img:last");
+
+
+var theType = function(options.type) {
+        if (options.type === 'div') {
+          var beforeEle = container.find("div:first");
+        var afterEle = container.find("div:last");
+        }
+        elseif( options.type  === 'video') {
+          var beforeEle = container.find("video:first");
+        var afterEle = container.find("video:last");
+      }
+      else{
+        var beforeEle = container.find("img:first");
+        var afterEle = container.find("img:last");
+          }
+          return theType;
+      };
+
+
       container.append("<div class='twentytwenty-handle'></div>");
       var slider = container.find(".twentytwenty-handle");
       slider.append("<span class='twentytwenty-" + beforeDirection + "-arrow'></span>");
       slider.append("<span class='twentytwenty-" + afterDirection + "-arrow'></span>");
       container.addClass("twentytwenty-container");
-      beforeImg.addClass("twentytwenty-before");
-      afterImg.addClass("twentytwenty-after");
+      beforeEle.addClass("twentytwenty-before");
+      afterEle.addClass("twentytwenty-after");
       
       var calcOffset = function(dimensionPct) {
-        var w = beforeImg.width();
-        var h = beforeImg.height();
+        var w = beforeEle.width();
+        var h = beforeEle.height();
         return {
           w: w+"px",
           h: h+"px",
@@ -51,12 +69,12 @@
 
       var adjustContainer = function(offset) {
       	if (sliderOrientation === 'vertical') {
-          beforeImg.css("clip", "rect(0,"+offset.w+","+offset.ch+",0)");
-          afterImg.css("clip", "rect("+offset.ch+","+offset.w+","+offset.h+",0)");
+          beforeEle.css("clip", "rect(0,"+offset.w+","+offset.ch+",0)");
+          afterEle.css("clip", "rect("+offset.ch+","+offset.w+","+offset.h+",0)");
       	}
       	else {
-          beforeImg.css("clip", "rect(0,"+offset.cw+","+offset.h+",0)");
-          afterImg.css("clip", "rect(0,"+offset.w+","+offset.h+","+offset.cw+")");
+          beforeEle.css("clip", "rect(0,"+offset.cw+","+offset.h+",0)");
+          afterEle.css("clip", "rect(0,"+offset.w+","+offset.h+","+offset.cw+")");
     	}
         container.css("height", offset.h);
       };
@@ -100,8 +118,8 @@
         container.addClass("active");
         offsetX = container.offset().left;
         offsetY = container.offset().top;
-        imgWidth = beforeImg.width(); 
-        imgHeight = beforeImg.height();          
+        imgWidth = beforeEle.width(); 
+        imgHeight = beforeEle.height();          
       };
       var onMove = function(e) {
         if (container.hasClass("active")) {
@@ -128,7 +146,7 @@
         e.preventDefault();
       });
 
-      container.find("img").on("mousedown", function(event) {
+      container.find("theType").on("mousedown", function(event) {
         event.preventDefault();
       });
 
@@ -136,8 +154,8 @@
         container.on('click', function(e) {
           offsetX = container.offset().left;
           offsetY = container.offset().top;
-          imgWidth = beforeImg.width();
-          imgHeight = beforeImg.height();
+          imgWidth = beforeEle.width();
+          imgHeight = beforeEle.height();
 
           sliderPct = getSliderPercentage(e.pageX, e.pageY);
           adjustSlider(sliderPct);
